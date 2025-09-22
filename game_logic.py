@@ -50,9 +50,7 @@ def play_game():
     guessed_letters = []
     secret_word = get_random_word()
     print("Welcome to Snowman Meltdown!")
-    print("Secret word selected: " + secret_word)  # for testing, later remove this line
 
-    # TODO: Build your game loop here.
     while True:
         display_game_state(mistakes, secret_word, guessed_letters)
 
