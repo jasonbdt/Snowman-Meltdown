@@ -1,3 +1,4 @@
+"""Program entry point for Snowman Meltdown."""
 from game_logic import play_game
 
 
