@@ -44,11 +44,12 @@ def display_game_state(
 ) -> None:
     print(STAGES[mistakes])
 
-    masked_word = ""
-    for letter in secret_word:
-        masked_word += letter if letter in guessed_letters else "_"
+    if mistakes < 3:
+        masked_word = ""
+        for letter in secret_word:
+            masked_word += letter if letter in guessed_letters else "_"
 
-    print(f"Word: {" ".join(masked_word)}\n")
+        print(f"Word: {" ".join(masked_word)}\n")
 
 
 def play_game():
@@ -61,7 +62,21 @@ def play_game():
     # TODO: Build your game loop here.
     while True:
         display_game_state(mistakes, secret_word, guessed_letters)
-        guess = input("Guess a letter: ").lower()
+
+        if mistakes == 3:
+            print(f"Game Over! The word was {secret_word}")
+            break
+        elif len(set(guessed_letters)) == len(set(secret_word)):
+            print(f"Congratulations, you saved the snowman!")
+            break
+        else:
+            guess = input("Guess a letter: ").lower()
+
+            if guess in secret_word.lower():
+                guessed_letters.append(guess)
+            else:
+                mistakes += 1
+
         print("You guessed:", guess)
 
 
